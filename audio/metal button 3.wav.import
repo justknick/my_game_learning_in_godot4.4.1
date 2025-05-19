@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://0kekknd7ken2"
+path="res://.godot/imported/metal button 3.wav-1ef95d7afc5ac26024c9e67d8f793acf.sample"
+
+[deps]
+
+source_file="res://audio/metal button 3.wav"
+dest_files=["res://.godot/imported/metal button 3.wav-1ef95d7afc5ac26024c9e67d8f793acf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

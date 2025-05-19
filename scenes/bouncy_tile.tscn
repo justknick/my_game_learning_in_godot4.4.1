@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bpoubfnewasx4"]
+
+[ext_resource type="Texture2D" uid="uid://b2ogt4lsi8fvy" path="res://assets/level_design_blocks.png" id="1_fskty"]
+[ext_resource type="Script" uid="uid://bgsy3s23nuob2" path="res://scripts/bouncy_tile.gd" id="1_x3kf2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3kf2"]
+atlas = ExtResource("1_fskty")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8kxn2"]
+size = Vector2(16, 16)
+
+[node name="BouncyTile" type="Area2D"]
+script = ExtResource("1_x3kf2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_x3kf2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8kxn2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
