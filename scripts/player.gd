@@ -6,6 +6,8 @@ class_name Player
 @export var speed_multiplier: int = 2
 
 @onready var debug_state: Label = $debug_state
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_in_fast_block_state: bool = false
 
@@ -20,16 +22,14 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
 	# Handle jump.
 	jump()
 	# Get the input direction and handle the movement/deceleration.
 	movement()
-	
-	label() 
+	# Add the gravity.
+	apply_gravity(delta)
+	# debug
+	label()
 	
 	move_and_slide()
 
@@ -39,13 +39,28 @@ func label() -> void:
 	debug_state.text = "fast block: " + str(is_in_fast_block_state)
 
 
-## Player Controls
+func apply_gravity(delta: float) -> void:
+	if not is_on_floor():
+		animation_player.play("jump")
+		velocity += get_gravity() * delta
+
+
+func facing_direction(direction: float) -> void:
+	if direction > 0:
+		sprite_2d.flip_h = false
+	if direction < 0:
+		sprite_2d.flip_h = true
+
+
 func movement() -> void: 
 	if !is_in_fast_block_state:
 		var direction := Input.get_axis("move_left", "move_right")
 		if direction:
+			facing_direction(direction)
+			animation_player.play("run")
 			velocity.x = direction * speed
 		else:
+			animation_player.play("idle")
 			velocity.x = move_toward(velocity.x, 0, speed)
 
 
@@ -54,17 +69,16 @@ func jump() -> void:
 		velocity.y = JUMP_VELOCITY
 
 
-
 ## Player Interaction with Map
 func fast_block(active: bool) -> void: 
 	if active:
 		is_in_fast_block_state = true
 		speed = 800.0
 		velocity.x = speed
-	else:
+	if !active:
 		is_in_fast_block_state = false
 		speed = 300.0
-		movement()
+	movement()
 
 
 func bounce(bounce_vel: float) -> void: 

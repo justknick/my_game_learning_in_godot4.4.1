@@ -1,11 +1,85 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpoubfnewasx4"]
+[gd_scene load_steps=14 format=3 uid="uid://bpoubfnewasx4"]
 
 [ext_resource type="Texture2D" uid="uid://b2ogt4lsi8fvy" path="res://assets/level_design_blocks.png" id="1_fskty"]
 [ext_resource type="Script" uid="uid://bgsy3s23nuob2" path="res://scripts/bouncy_tile.gd" id="1_x3kf2"]
+[ext_resource type="AudioStream" uid="uid://c253ilf2kwlu7" path="res://audio/door open 7.wav" id="2_3pvo5"]
+[ext_resource type="Texture2D" uid="uid://dyr3tdc4k7nsx" path="res://assets/bounce_tile_sprite_sheet.png" id="3_3byd8"]
+[ext_resource type="Texture2D" uid="uid://bcegf7ip0taj2" path="res://assets/tileset.png" id="3_8kxn2"]
+
+[sub_resource type="Animation" id="Animation_3byd8"]
+resource_name = "bounce"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Spring_anim:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BounceSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vq4uc"]
+_data = {
+&"bounce": SubResource("Animation_3byd8")
+}
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3kf2"]
 atlas = ExtResource("1_fskty")
 region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3byd8"]
+atlas = ExtResource("3_8kxn2")
+region = Rect2(112, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pvo5"]
+atlas = ExtResource("3_8kxn2")
+region = Rect2(128, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vq4uc"]
+atlas = ExtResource("3_8kxn2")
+region = Rect2(144, 112, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vnrba"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3byd8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pvo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vq4uc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pvo5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3byd8")
+}],
+"loop": false,
+"name": &"bounce",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kxn2"]
 size = Vector2(16, 16)
@@ -13,8 +87,26 @@ size = Vector2(16, 16)
 [node name="BouncyTile" type="Area2D"]
 script = ExtResource("1_x3kf2")
 
+[node name="BounceSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3pvo5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vq4uc")
+}
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = SubResource("AtlasTexture_x3kf2")
+
+[node name="Spring_anim" type="Sprite2D" parent="."]
+texture = ExtResource("3_3byd8")
+hframes = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_vnrba")
+animation = &"bounce"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8kxn2")
