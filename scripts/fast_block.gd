@@ -10,7 +10,7 @@ func _on_body_entered(body: Node2D) -> void:
 			body.fast_block(true)
 		else:
 			print_debug(calls_method_name, " method not exist for:", body)
-	print("body entered: ", body)
+	#print("body entered: ", body)
 
 
 func _on_body_exited(body: Node2D) -> void:
@@ -19,4 +19,4 @@ func _on_body_exited(body: Node2D) -> void:
 			body.fast_block(false)
 		else:
 			print_debug(calls_method_name, " method not exist for:", body)
-	print("body exited: ", body)
+	#print("body exited: ", body)

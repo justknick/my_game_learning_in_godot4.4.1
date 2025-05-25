@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2iprrtp8inxc"]
+
+[ext_resource type="Texture2D" uid="uid://bcegf7ip0taj2" path="res://assets/tileset.png" id="1_60jus"]
+[ext_resource type="Script" uid="uid://1x0eqy1bf2d" path="res://scenes/lock.gd" id="1_s433i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s433i"]
+atlas = ExtResource("1_60jus")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40mgl"]
+size = Vector2(36, 36)
+
+[node name="Lock" type="StaticBody2D"]
+script = ExtResource("1_s433i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_s433i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_40mgl")

@@ -1,0 +1,249 @@
+[gd_scene load_steps=19 format=3 uid="uid://cbdoynuh36rrg"]
+
+[ext_resource type="Texture2D" uid="uid://13p4mjo8s6fq" path="res://assets/lil_reaper_sprite_sheet.png" id="1_4a7on"]
+[ext_resource type="Script" uid="uid://bgo6ph4ndxld3" path="res://scripts/npc_lil_reaper.gd" id="1_pwiut"]
+[ext_resource type="AudioStream" uid="uid://dag2k3b6m3d32" path="res://audio/metal button 1.wav" id="3_dqts0"]
+[ext_resource type="AudioStream" uid="uid://covrqsjxg4sb7" path="res://audio/metal button 2.wav" id="4_i6sov"]
+[ext_resource type="AudioStream" uid="uid://0kekknd7ken2" path="res://audio/metal button 3.wav" id="5_jllgl"]
+[ext_resource type="AudioStream" uid="uid://krwlq10mgr0" path="res://audio/metal button 4.wav" id="6_f8rxy"]
+[ext_resource type="AudioStream" uid="uid://be0lyuut7lbgc" path="res://audio/metal button 5.wav" id="7_ikr3c"]
+[ext_resource type="AudioStream" uid="uid://dm6lajw3k00jg" path="res://audio/metal button 6.wav" id="8_akfhn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_o3qv0"]
+random_pitch = 1.1
+streams_count = 6
+stream_0/stream = ExtResource("3_dqts0")
+stream_1/stream = ExtResource("4_i6sov")
+stream_2/stream = ExtResource("5_jllgl")
+stream_3/stream = ExtResource("6_f8rxy")
+stream_4/stream = ExtResource("7_ikr3c")
+stream_5/stream = ExtResource("8_akfhn")
+
+[sub_resource type="Animation" id="Animation_nqkey"]
+resource_name = "show_objective"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObjectiveText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25, 0.35, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 23.4254, 3.86375, 3.24901, 3.86375, 61.82),
+"update": 0,
+"values": [0.0, 0.333333, 0.416667, 0.666667, 0.733333, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ObjectiveText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.25, 0.3, 0.45, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dqts0"]
+resource_name = "success"
+length = 0.8
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ObjectiveText:visible_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.25, 0.35, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 23.4254, 3.86375, 3.24901, 3.86375, 61.82),
+"update": 0,
+"values": [0.0, 0.333333, 0.416667, 0.666667, 0.733333, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ObjectiveText:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.25, 0.3, 0.45, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}, {
+"args": [],
+"method": &"play_button_sound"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"unlock"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ca64c"]
+_data = {
+&"show_objective": SubResource("Animation_nqkey"),
+&"success": SubResource("Animation_dqts0")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pwiut"]
+atlas = ExtResource("1_4a7on")
+region = Rect2(0, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqkey"]
+atlas = ExtResource("1_4a7on")
+region = Rect2(31, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0if74"]
+atlas = ExtResource("1_4a7on")
+region = Rect2(62, 0, 31, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca64c"]
+atlas = ExtResource("1_4a7on")
+region = Rect2(93, 0, 31, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chq1k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pwiut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqkey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0if74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca64c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqts0"]
+size = Vector2(52, 20)
+
+[node name="NPCLilReaper" type="Area2D"]
+script = ExtResource("1_pwiut")
+
+[node name="TypingSFX" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_o3qv0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ca64c")
+}
+
+[node name="ObjectiveText" type="RichTextLabel" parent="."]
+offset_left = 14.0
+offset_top = -84.0
+offset_right = 143.0
+offset_bottom = -32.0
+theme_override_colors/font_outline_color = Color(0.478431, 0.211765, 0.482353, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
+text = "dur hurrr"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -23)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_chq1k")
+autoplay = "default"
+frame_progress = 0.75269
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28, -13)
+shape = SubResource("RectangleShape2D_dqts0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

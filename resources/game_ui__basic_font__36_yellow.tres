@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://pon5p7ap4ftk"]
+
+[sub_resource type="SystemFont" id="SystemFont_ojb23"]
+
+[resource]
+font = SubResource("SystemFont_ojb23")
+font_size = 36
+font_color = Color(1, 0.972549, 0.717647, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)

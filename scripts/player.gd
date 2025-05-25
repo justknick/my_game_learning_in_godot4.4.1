@@ -10,6 +10,7 @@ class_name Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_in_fast_block_state: bool = false
+var is_hurt: bool = false
 
 const JUMP_VELOCITY = -400.0
 
@@ -70,6 +71,20 @@ func jump() -> void:
 
 
 ## Player Interaction with Map
+func lava_block(body: Node2D) -> void: 
+	is_hurt = true
+	
+	var heart_amount = PlayerValues.alter_hearts(-1)
+	
+	if heart_amount <= 0:
+		PlayerValues.emit_signal("reset_world", body)
+	
+	velocity.y = JUMP_VELOCITY
+	
+	await get_tree().create_timer(0.2).timeout
+	is_hurt = false
+
+
 func fast_block(active: bool) -> void: 
 	if active:
 		is_in_fast_block_state = true

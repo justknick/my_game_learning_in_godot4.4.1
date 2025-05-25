@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://nif3mfa5ssgc"]
+
+[ext_resource type="Script" uid="uid://5pc0nxufv4ye" path="res://scripts/key.gd" id="1_fttkb"]
+[ext_resource type="AudioStream" uid="uid://ccct31t87lwur" path="res://audio/keys_jingle_1.wav" id="2_brs3p"]
+[ext_resource type="Texture2D" uid="uid://bcegf7ip0taj2" path="res://assets/tileset.png" id="2_wy8tx"]
+
+[sub_resource type="Animation" id="Animation_fttkb"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1.7411, 1.74),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1.74, 1.74),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wy8tx"]
+_data = {
+&"idle": SubResource("Animation_fttkb")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brs3p"]
+atlas = ExtResource("2_wy8tx")
+region = Rect2(16, 64, 16, 16)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jcln5"]
+
+[node name="Key" type="Area2D"]
+script = ExtResource("1_fttkb")
+
+[node name="KeyJingleSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_brs3p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_wy8tx")
+}
+autoplay = "idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_brs3p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jcln5")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="KeyJingleSFX" to="." method="_on_key_jingle_sfx_finished"]
